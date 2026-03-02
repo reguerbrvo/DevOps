@@ -73,7 +73,10 @@ class ExpenseService:
         Debería de devolver la suma de los amounts de todos los Expenses, ahora mismo parece devolver 0 solamente.
         :return:
         """
-        return 0
+        total_expenses = 0
+        for expense in self._repository.list_expenses():
+            total_expenses += expense.amount
+        return total_expenses
 
     def total_by_month(self) -> dict[str, float]:
         totals = defaultdict(float)
