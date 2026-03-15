@@ -20,11 +20,12 @@ jobs:
       - name: Install uv
         run: python3 -m pip install uv
 
-      - name: Install dependencies with uv
+      - name: Install project dependencies with uv
         run: uv sync
 
-      - name: Install ruff
-        run: python3 -m pip install ruff
+      - name: Install tooling (ruff, pytest)
+        run: |
+          python3 -m pip install ruff pytest
 
       - name: Ruff linter (check errors)
         run: python3 -m ruff check . --fix
