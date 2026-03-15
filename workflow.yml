@@ -1,0 +1,45 @@
+name: Continuous Integration Workflow
+
+# El flujo se dispara en cada push a cualquier rama
+on: [push]
+
+jobs:
+  quality-assurance:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+
+      - name: Install dependencies
+        run: npm install
+
+
+      - name: Run Linter (Check errors)
+        run: npm run lint
+
+
+
+      - name: Check code formatting
+        run: npm run format:check
+
+
+      - name: Run Unit Tests
+        run: npm run test:unit
+
+
+      - name: Run Integration Tests
+        run: npm run test:integration
+
+
+      - name: Run BDD Tests
+        run: npm run test:bdd

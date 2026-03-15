@@ -74,7 +74,7 @@ class ExpenseService:
         :return:
         """
         total_expenses = 0
-        for expense in self._repository.list_expenses():
+        for expense in self.list_expenses():
             total_expenses += expense.amount
         return total_expenses
 
