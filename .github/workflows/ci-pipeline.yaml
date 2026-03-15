@@ -23,9 +23,9 @@ jobs:
       - name: Install project dependencies with uv
         run: uv sync
 
-      - name: Install tooling (ruff, pytest)
+      - name: Install tooling (ruff, pytest, pytest-bdd)
         run: |
-          python3 -m pip install ruff pytest
+          python3 -m pip install ruff pytest pytest-bdd
 
       - name: Ruff linter (check errors)
         run: python3 -m ruff check . --fix
